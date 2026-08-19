@@ -1,5 +1,5 @@
 # todo
-> A simple CLI todo manager written in Go with JSON storage
+> A simple CLI todo manager written in Go with TXT storage
 ### Features
 - simple and clear appearance
 - easy commands
