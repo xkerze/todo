@@ -24,20 +24,15 @@ func main() {
 		}
 		input = strings.TrimSpace(input)
 		switch {
-		case input == "!new":
-			fmt.Println("ok, write your task")
-			fmt.Print("\033[1m> \033[0m")
-			reader := bufio.NewReader(os.Stdin)
-			input, err := reader.ReadString('\n')
-			if err != nil {
-				panic(err)
-			}
-			input = strings.TrimSpace(input)
-			if input == "" {
-				fmt.Println("\033[1mtask can't be empty\033[0m")
+		case strings.HasPrefix(input, "!add"):
+			parts := strings.Fields(input)
+			if len(parts) < 2 {
+				fmt.Println("usage: !add [task]")
+				fmt.Println("example: !add do homework")
 				continue
 			}
-			s.SaveToFile(input, path)
+			task := strings.Join(parts[1:], " ")
+			s.AddTask(path, task)
 		case input == "!tasks":
 			s.GetTasks(path)
 		case strings.HasPrefix(input, "!done"):
@@ -62,9 +57,10 @@ func main() {
 			}
 		case input == "!exit":
 			l.Log("goodbye")
+			return
 		default:
 			fmt.Println("please enter the command")
-			fmt.Println("available commands: !new [task], !tasks, !done [num], !exit")
+			fmt.Println("available commands: !add [task], !tasks, !done [num], !exit")
 		}
 	}
 }
