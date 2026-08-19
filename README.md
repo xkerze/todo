@@ -1,6 +1,5 @@
 # todo
 > A simple CLI todo manager written in Go with JSON storage
----
 ### Features
 - simple and clear appearance
 - easy commands
@@ -12,4 +11,10 @@
 |!done <number>|removes the task from the list|
 |!tasks|shows all tasks|
 |!exit|exit from application|
----
+### Installation
+```bash
+git clone https://github.com/xkerze/todo.git
+cd todo
+go mod download
+go run cmd/main.go
+```
